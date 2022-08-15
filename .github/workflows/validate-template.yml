@@ -12,11 +12,10 @@ jobs:
       - name: Checkout project
         uses: actions/checkout@v3
 
-      # Workaround to install latest tuist
-      - name: Tuist version
+      - name: Tuist bundle
         uses: tuist/tuist-action@0.13.0
         with:
-          command: 'version'
+          command: 'bundle'
 
       - name: Validate Template
         run: ./validate-template.sh
