@@ -6,7 +6,7 @@ echo ""
 
 # 1 Searching Tuist
 echo "1️⃣  Searching for Tuist..."
-TUIST=./.tuist-bin/tuist
+TUIST=$(which tuist)
 if ! TUIST &> /dev/null; then
     echo "❌ Tuist not found"
     exit 1
