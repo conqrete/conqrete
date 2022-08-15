@@ -6,11 +6,9 @@ echo ""
 
 # 1 Searching Tuist
 echo "1️⃣  Searching for Tuist..."
-TUIST=$(which tuist)
-echo $TUIST
-ls -la
-ls .tuist-bin
-if ! TUIST &> /dev/null; then
+export TUIST="./.tuist-bin/tuist"
+echo "TUIST: $TUIST"
+if ! $TUIST &> /dev/null; then
     echo "❌ Tuist not found"
     exit 1
 else
@@ -20,7 +18,7 @@ echo ""
 
 # 2 Tuist scaffold list
 echo "2️⃣  Running 'tuist scaffold list'..."
-TUIST_SCAFFOLD_LIST_OUTPUT=$($TUIST scaffold list)
+export TUIST_SCAFFOLD_LIST_OUTPUT="$($TUIST scaffold list)"
 if [ $? -eq 0 ]; then
     echo "✅ Got 'tuist scaffold list output':"
     echo "$TUIST_SCAFFOLD_LIST_OUTPUT"

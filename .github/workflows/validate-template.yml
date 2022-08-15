@@ -17,5 +17,8 @@ jobs:
         with:
           command: 'bundle'
 
+      - name: Make validate script runnable
+        run: chmod +x ./validate-template.sh
+
       - name: Validate Template
         run: ./validate-template.sh
