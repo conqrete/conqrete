@@ -1,0 +1,14 @@
+default_platform(:ios)
+
+platform :ios do
+
+  desc "Build & Test"
+  lane :test do
+    run_tests(
+      workspace: "{{ prefix }}{{ fmwkName }}.xcworkspace",
+      scheme: "{{ prefix }}{{ fmwkName }}",
+      code_coverage: true
+    )
+  end
+
+end

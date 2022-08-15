@@ -1,0 +1,22 @@
+name: Validate Template
+
+on:
+  push:
+    branches:
+      - 'main'
+
+jobs:
+  validate-template:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout project
+        uses: actions/checkout@v3
+
+      # Workaround to install latest tuist
+      - name: Tuist version
+        uses: tuist/tuist-action@0.13.0
+        with:
+          command: 'version'
+
+      - name: Validate Template
+        run: ./validate-template.sh

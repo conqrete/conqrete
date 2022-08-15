@@ -1,0 +1,58 @@
+# {{ prefix }} {{ fmwkName }}
+
+![release](https://img.shields.io/github/v/release/conqrete/{{ prefix }}{{ fmwkName }}?display_name=tag&sort=date)
+![build & test](https://img.shields.io/github/workflow/status/conqrete/{{ prefix }}{{ fmwkName }}/Build%20&%20Test?label=build%20%26%20test)
+![platforms](https://img.shields.io/badge/platforms-iOS-lightgrey.svg)
+![license](https://img.shields.io/github/license/conqrete/{{ prefix }}{{ fmwkName }})
+
+{{ fmwkName }} description...
+
+## Installation
+
+### Tuist
+
+To install {{ prefix }}{{ fmwkName }} as a dependency for yout project via **Tuist**, you should first add this to dependencies list at `Dependencies.swift` like this:
+
+```Swift
+// Dependencies.swift
+
+import ProjectDescription
+
+let dependencies = Dependencies(
+    // ...
+    swiftPackageManager: SwiftPackageManagerDependencies(
+        [
+            .remote(
+                url: "https://github.com/conqrete/{{ prefix }}{{ fmwkName }}",
+                requirement: .upToNextMajor(from: "{{ marketingVersion }}")
+            )
+            // ...
+        ],
+        // ...
+    ),
+    // ...
+)
+```
+
+> If your Tuist project does not have any dependencies yet, please follow [official Tuist's documentation for adding external dependencies](https://docs.tuist.io/guides/third-party-dependencies).
+
+### SPM
+
+Also, you could use pure **SPM** to install {{ prefix }}{{ fmwkName }}. Modify your `Package.swift` to add:
+
+```Swift
+// Package.swift
+
+let package = Package(
+    // ...
+    dependencies: [
+        .package(url: "https://github.com/conqrete/{{ prefix }}{{ fmwkName }}", .upToNextMajor(from: "{{ marketingVersion }}")),
+        // ...
+    ],
+    // ...
+)
+```
+
+## Usage
+
+Usage description...

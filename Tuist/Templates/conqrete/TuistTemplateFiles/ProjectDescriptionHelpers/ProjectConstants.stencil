@@ -1,0 +1,28 @@
+//
+//  ProjectConstants.swift
+//  {{ prefix }}{{ fmwkName }}
+//
+//  Created by {{ author }} on {{ date }}.
+//  Copyright © {{ year }} {{ organizationIdentifier }}. All rights reserved.
+//
+
+import Foundation
+import ProjectDescription
+
+public enum ProjectConstants {
+
+    public static let currentProjectVersion: String = {
+        let versionString = Environment[dynamicMember: "projectVersion"].getString(default: "1")
+        return versionString.trimmingCharacters(in: .whitespacesAndNewlines)
+    }()
+
+    public static let organizationName: String = "{{ organizationIdentifier }}"
+
+    public static let projectName: String = "{{ prefix }}{{ fmwkName }}"
+
+    public static let frameworkTargetName: String = projectName
+    public static let frameworkBundleID: String = "\(organizationName).\(frameworkTargetName)"
+
+    public static let frameworkTestsTargetName: String = "\(projectName)Tests"
+    public static let frameworkTestsBundleIdentifier: String = "\(frameworkBundleID)Tests"
+}
