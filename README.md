@@ -35,7 +35,7 @@ cp -R ./ConqreteFrameworkTuistTemplate/Tuist/Templates/conqrete ./Tuist/Template
 tuist scaffold list
 ```
 
-The output should look line this::
+The output should look line this:
 
 ```
 Name      Description
