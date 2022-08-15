@@ -7,7 +7,6 @@ echo ""
 # 1 Searching Tuist
 echo "1️⃣  Searching for Tuist..."
 export TUIST="./.tuist-bin/tuist"
-echo "TUIST: $TUIST"
 if ! $TUIST &> /dev/null; then
     echo "❌ Tuist not found"
     exit 1
