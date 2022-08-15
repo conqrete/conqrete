@@ -20,13 +20,32 @@ mkdir Conqrete && cd Conqrete
 git clone https://github.com/conqrete/ConqreteFrameworkTuistTemplate.git
 ```
 
-> `tuist` looks for `Tuist` folder recursively from current recursively from directory to parent. 
+3. Copy contets of cloned Tuist template to `./Tuist/Templates/` by executing following script:
 
-After performing the script above, please validate the installation by executing the script below from same directory:
+```sh
+mkdir -p ./Tuist/Templates/conqrete/
+cp -R ./ConqreteFrameworkTuistTemplate/Tuist/Templates/conqrete ./Tuist/Templates/conqrete
+```
+
+> `tuist` looks for `Tuist` folder recursively from current recursively from directory to parent.
+
+4. After performing the script above, please validate the installation by executing the script below from same directory:
 
 ```sh
 tuist scaffold list
 ```
+
+The output should look line this::
+
+```
+Name      Description
+────────  ───────────────────────────
+default   Default template
+swiftui   SwiftUI template
+conqrete  Conqrete framework template
+```
+
+The last line means that `tuist` has successfully detected `conqrete` template and is ready to use via `scaffold` or `init -t` commands
 
 # Usage
 
@@ -36,6 +55,32 @@ To bootstrap new Conqrete framework, execute following script (in ex., `Conqrete
 tuist scaffold conqrete --fmwk-name Analytics --author $(git config user.name)
 ```
 
+> Note that template has 2 required parameters:
+> - `--fmwk-name` - the name of the framewok. By default, it is appended to prefix `Conqrete`
+> - `author` - the author's username. Use `--author $(git config user.name)` to use current git's username for `--author` parameter
+>
+> You could examine full list of parameters below at the section **Parameters list**
+
+The result of executing this command will be the new folder `./ConqreteAnalytics` with generated content ready for development and maintenance. After bootstraping the project, you must use generated scripts for easier generation of project via Tuist:
+
+```sh
+cd ConqreteAnalytics
+chmod -R +x ./Scripts
+./Scripts/generate-project.sh
+```
+
+Custom script will generate `.xcodeproj` and `.xcworkspace` without opening it. To open workspace in Xcode locate current folder and double click on `ConqreteAnalytics.xcworkspace` or execute this script from terminal:
+
+```sh
+open ./ConqreteAnalytics.xcworkspace
+```
+
+## Usage notes
+
+- You must use `tuist scaffold conqrete ...` and not `tuist init -t conqrete` as `init` command currently has a few limitations:
+  - it does not accept parameters
+  - it could only be used within empty directory
+
 ## Parameters list
 
 This template supports following parameters
@@ -43,12 +88,14 @@ This template supports following parameters
 <table>
     <tr>
         <th>Paramter</th>
+        <th>Command line usage example</th>
         <th>Parameter type</th>
         <th>Description</th>
         <th>Default value</th>
     </tr>
     <tr>
         <td><code>prefix</code></td>
+        <td><code>--prefix Conqrete</code></td>
         <td><code>optional</code></td>
         <td>
             <p>Prefix used for creating framework</p>
@@ -61,6 +108,7 @@ This template supports following parameters
     </tr>
     <tr>
         <td><code>fmwkName</code></td>
+        <td><code>--fmwk-name Analytics</code></td>
         <td><code>required</code></td>
         <td>
             <p>Framework name</p>
@@ -73,6 +121,7 @@ This template supports following parameters
     </tr>
     <tr>
         <td><code>author</code></td>
+        <td><code>--author stilltimm</code></td>
         <td><code>required</code></td>
         <td>
             <p>Author's git username</p>
@@ -85,6 +134,7 @@ This template supports following parameters
     </tr>
     <tr>
         <td><code>organizationIdentifier</code></td>
+        <td><code>--organization-identifier com.conqrete</code></td>
         <td><code>optional</code></td>
         <td>
             <p>Organization identifier</p>
@@ -97,6 +147,7 @@ This template supports following parameters
     </tr>
     <tr>
         <td><code>year</code></td>
+        <td><code>--year 2022</code></td>
         <td><code>optional</code></td>
         <td>
             <p>Current year string in <code>YYYY</code> ISO format</p>
@@ -114,6 +165,7 @@ This template supports following parameters
     </tr>
     <tr>
         <td><code>date</code></td>
+        <td><code>--date 15.08.2022</code></td>
         <td><code>optional</code></td>
         <td>
             <p>Current year string in <code>YYYY</code> ISO format</p>
@@ -131,6 +183,7 @@ This template supports following parameters
     </tr>
     <tr>
         <td><code>swiftVersion</code></td>
+        <td><code>--swift-version 5.6</code></td>
         <td><code>optional</code></td>
         <td>
             <p>Swift version to use in generated project</p>
@@ -139,6 +192,7 @@ This template supports following parameters
     </tr>
     <tr>
         <td><code>tuistVersion</code></td>
+        <td><code>--tuist-version 3.9.0</code></td>
         <td><code>optional</code></td>
         <td>
             <p>Tuist version to use in generated project</p>
@@ -148,6 +202,7 @@ This template supports following parameters
     </tr>
     <tr>
         <td><code>rubyVersion</code></td>
+        <td><code>--ruby-version 3.1.1</code></td>
         <td><code>optional</code></td>
         <td>
             <p>Ruby version to use in generated project</p>
@@ -157,6 +212,7 @@ This template supports following parameters
     </tr>
     <tr>
         <td><code>projectVersion</code></td>
+        <td><code>--project-version 1</code></td>
         <td><code>optional</code></td>
         <td>
             <p>Project's version</p>
@@ -170,6 +226,7 @@ This template supports following parameters
     </tr>
     <tr>
         <td><code>marketingVersion</code></td>
+        <td><code>--marketing-version 0.9.0</code></td>
         <td><code>optional</code></td>
         <td>
             <p>Project's marketing version</p>
