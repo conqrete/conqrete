@@ -1,8 +1,8 @@
-# Coqnrete Framework Tuist Template
+# Conqrete Framework Tuist Template
 
-![release](https://img.shields.io/github/v/release/conqrete/CoqnreteFrameworkTuistTemplate?display_name=tag&sort=date)
-![template validation](https://img.shields.io/github/workflow/status/conqrete/CoqnreteFrameworkTuistTemplate/Validate%20Template?label=template%20validation)
-![license](https://img.shields.io/github/license/conqrete/CoqnreteFrameworkTuistTemplate)
+![release](https://img.shields.io/github/v/release/conqrete/ConqreteFrameworkTuistTemplate?display_name=tag&sort=date)
+![template validation](https://img.shields.io/github/workflow/status/conqrete/ConqreteFrameworkTuistTemplate/Validate%20Template?label=template%20validation)
+![license](https://img.shields.io/github/license/conqrete/ConqreteFrameworkTuistTemplate)
 ![powered by tuist](https://img.shields.io/badge/powered%20by-Tuist-blue)
 
 Conqrete's Tuist template for generating Conqrete framework project
@@ -17,7 +17,7 @@ mkdir Conqrete && cd Conqrete
 2. Clone Template and copy ites contents to `./Tuist/Templates/` by executing the script below:
 
 ```sh
-git clone https://github.com/conqrete/CoqnreteFrameworkTuistTemplate.git
+git clone https://github.com/conqrete/ConqreteFrameworkTuistTemplate.git
 ```
 
 > `tuist` looks for `Tuist` folder recursively from current recursively from directory to parent. 
