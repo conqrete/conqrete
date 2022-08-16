@@ -183,12 +183,12 @@ This template supports following parameters
     </tr>
     <tr>
         <td><code>swiftVersion</code></td>
-        <td><code>--swift-version 5.6</code></td>
+        <td><code>--swift-version 5.5</code></td>
         <td><code>optional</code></td>
         <td>
             <p>Swift version to use in generated project</p>
         </td>
-        <td><code>5.6</code></td>
+        <td><code>5.5</code></td>
     </tr>
     <tr>
         <td><code>tuistVersion</code></td>

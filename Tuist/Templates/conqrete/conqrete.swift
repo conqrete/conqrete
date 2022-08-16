@@ -27,7 +27,7 @@ let organizationIdentifierAttribute: Template.Attribute = .optional("organizatio
 let yearAttribute: Template.Attribute = .optional("year", default: yearString)
 let dateAttribute: Template.Attribute = .optional("date", default: dateString)
 
-let swiftVersionAttribute: Template.Attribute = .optional("swiftVersion", default: "5.6")
+let swiftVersionAttribute: Template.Attribute = .optional("swiftVersion", default: "5.5")
 let tuistVersionAttribute: Template.Attribute = .optional("tuistVersion", default: "3.9.0")
 let rubyVersionAttribute: Template.Attribute = .optional("rubyVersion", default: "3.1.1")
 let projectVersionAttribute: Template.Attribute = .optional("projectVersion", default: "1")
