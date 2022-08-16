@@ -9,13 +9,13 @@ echo ""
 
 # 1 Getting version
 echo "1️⃣  Getting current project version..."
-version=$( cat $CURRENT_VERSION_PATH )
+export version=$( cat $CURRENT_VERSION_PATH )
 echo "✅ Current project version is '$version'"
 echo ""
 
 # Bump & Save version
 echo "2️⃣  Bumping and saving project version..."
-version=$((version+1))
+export version=$((version+1))
 printf $version > $CURRENT_VERSION_PATH
 echo "✅ Bumped & saved project version, so it is '$version' now"
 echo ""
