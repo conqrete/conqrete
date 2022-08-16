@@ -22,11 +22,15 @@ let package = Package(
             name: frameworkName,
             dependencies: [],
             path: "\(frameworkName)/Sources/",
-            exclude: ["SupportFiles/Info.plist"]
+            exclude: [
+                "SupportFiles/Info.plist"
+            ]
         ),
         .testTarget(
             name: frameworkTestsName,
-            dependencies: [frameworkName],
+            dependencies: [
+                .target(name: frameworkName)
+            ],
             path: "\(frameworkTestsName)/Sources/"
         )
     ]
