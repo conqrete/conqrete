@@ -218,6 +218,7 @@ let template = Template(
         .file(.scripts, file: "bump-project-version.sh", template: "BumpProjectVersion"),
         .file(.scripts, file: "generate-project.sh", template: "GenerateProject"),
         .file(.scripts, file: "clean.sh", template: "Clean"),
+        .file(.scripts, file: "validate-package.sh", template: "ValidatePackage"),
         // Tuist Root files
         .swiftFile(.tuistRoot, file: "Config"),
         .swiftFile(.tuistRoot, file: "Dependencies"),
