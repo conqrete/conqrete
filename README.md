@@ -9,43 +9,70 @@ Conqrete's Tuist template for generating Conqrete framework project
 
 # Installation
 
-1. Prepare new fresh directory that will hold your Conqrete framework(s):
+## One-shot script
+
 ```sh
 mkdir Conqrete && cd Conqrete
-```
-
-2. Clone Template and copy ites contents to `./Tuist/Templates/` by executing the script below:
-
-```sh
 git clone https://github.com/conqrete/ConqreteFrameworkTuistTemplate.git
-```
-
-3. Copy contets of cloned Tuist template to `./Tuist/Templates/` by executing following script:
-
-```sh
-mkdir -p ./Tuist/Templates/conqrete/
-cp -R ./ConqreteFrameworkTuistTemplate/Tuist/Templates/conqrete ./Tuist/Templates/conqrete
-```
-
-> `tuist` looks for `Tuist` folder recursively from current recursively from directory to parent.
-
-4. After performing the script above, please validate the installation by executing the script below from same directory:
-
-```sh
+mkdir -p ./Tuist/Templates/
+cp -R ./ConqreteFrameworkTuistTemplate/Tuist/Templates/conqrete ./Tuist/Templates/
+rm -rf ConqreteFrameworkTuistTemplate
 tuist scaffold list
 ```
 
-The output should look line this:
+## Step by step guide
 
-```
-Name      Description
-────────  ───────────────────────────
-default   Default template
-swiftui   SwiftUI template
-conqrete  Conqrete framework template
-```
+<details>
+  <summary>Show steps</summary>
+  
+  ### 1. Prepare new fresh directory that will hold your Conqrete framework(s):
+  ```sh
+  mkdir Conqrete && cd Conqrete
+  ```
 
-The last line means that `tuist` has successfully detected `conqrete` template and is ready to use via `scaffold` or `init -t` commands
+  ### 2. Clone Template and copy its contents to `./Tuist/Templates/` by executing the script below:
+
+  ```sh
+  git clone https://github.com/conqrete/ConqreteFrameworkTuistTemplate.git
+  ```
+
+  ### 3. Copy conqrete template to Tuist directory
+  Copy contets of cloned Tuist template to `./Tuist/Templates/` by executing following script:
+
+  ```sh
+  mkdir -p ./Tuist/Templates/
+  cp -R ./ConqreteFrameworkTuistTemplate/Tuist/Templates/conqrete ./Tuist/Templates/
+  ```
+
+  > `tuist` tool will looks for `/Tuist` directory recursively from current directory to parent.
+
+  ### 4. Validate installation
+
+  After performing the script above, validate the installation by executing the script below from same directory:
+
+  ```sh
+  tuist scaffold list
+  ```
+
+  The output should look line this:
+
+  ```
+  Name      Description
+  ────────  ───────────────────────────
+  default   Default template
+  swiftui   SwiftUI template
+  conqrete  Conqrete framework template
+  ```
+
+  The last line means that `tuist` has successfully detected `conqrete` template and is ready to use via `scaffold` or `init -t` commands
+
+  5. You could remove the cloned repo afterwards
+
+  ```sh
+  rm -rf ConqreteFrameworkTuistTemplate
+  ```
+
+</details>
 
 # Usage
 
