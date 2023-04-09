@@ -1,7 +1,7 @@
 # Conqrete Framework Tuist Template
 
 ![release](https://img.shields.io/github/v/release/conqrete/ConqreteFrameworkTuistTemplate?display_name=tag&sort=date)
-![template validation](https://img.shields.io/github/workflow/status/conqrete/ConqreteFrameworkTuistTemplate/Validate%20Template?label=template%20validation)
+![template validation](https://img.shields.io/github/actions/workflow/status/conqrete/ConqreteFrameworkTuistTemplate/validate-template.yml?branch=main&label=template%20validation)
 ![license](https://img.shields.io/github/license/conqrete/ConqreteFrameworkTuistTemplate)
 ![powered by tuist](https://img.shields.io/badge/powered%20by-Tuist-blue)
 
