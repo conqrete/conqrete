@@ -1,0 +1,17 @@
+//
+//  {{ projectName }}Tests.swift
+//  {{ projectName }}Tests
+//
+//  Created by {{ author }} on {{ date }}.
+//  Copyright © {{ year }} {{ organizationIdentifier }}. All rights reserved.
+//
+
+import XCTest
+@testable import {{ projectName }}
+
+final class {{ projectName }}Tests: XCTestCase {
+
+    func test_{{ projectName }}_name() {
+        XCTAssertEqual("{{ projectName }}", "{{ projectName }}")
+    }
+}

@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# Constants
+CURRENT_VERSION_PATH=./.current-project-version
+
+# Info
+echo "🔹 Running bump-project-version.sh"
+
+# Getting version
+echo ""
+echo "🔹 [1/2]  Getting current project version"
+
+export version=$( cat $CURRENT_VERSION_PATH )
+
+echo "✅ Current project version is '$version'"
+
+# Bump version
+echo ""
+echo "🔹 [2/2]  Bumping project version"
+
+export version=$((version+1))
+printf $version > $CURRENT_VERSION_PATH
+
+echo "✅ Bumped project version to '$version'"
+
+# Completed
+echo ""
+echo "✅ bump-project-version.sh completed"

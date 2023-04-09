@@ -1,0 +1,36 @@
+#!/bin/bash
+
+# Info
+echo "🔹 Running clean.sh"
+
+# Searching Tuist
+echo ""
+echo "🔹 [1/3] Searching for Tuist..."
+
+export TUIST=$(which tuist)
+
+if ! command -v $TUIST &> /dev/null; then
+    echo "❌ Tuist not found"
+    exit 1
+else
+    echo "✅ Found Tuist at $TUIST"
+fi
+
+# Clean Ttuist caches
+echo ""
+echo "🔹 [2/3] Cleaning Tuist caches"
+
+$TUIST clean
+
+echo "✅ Completed cleaning Tuist caches"
+
+# Clean Xcode caches
+echo "🔹 [3/3] Cleaninig Xcode workspace, project and caches"
+
+rm -rf -f ./Derived ./DerivedData ./{{ projectName }}.xcodeproj ./{{ projectName }}.xcworkspace
+
+echo "✅ Completed cleaninig Xcode workspace, project and caches"
+
+# Completed
+echo ""
+echo "✅ clean.sh completed"

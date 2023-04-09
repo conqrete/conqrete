@@ -134,7 +134,7 @@ This template supports following parameters
         <td><code>Conqrete</code></td>
     </tr>
     <tr>
-        <td><code>fmwkName</code></td>
+        <td><code>projectName</code></td>
         <td><code>--fmwk-name Analytics</code></td>
         <td><code>required</code></td>
         <td>

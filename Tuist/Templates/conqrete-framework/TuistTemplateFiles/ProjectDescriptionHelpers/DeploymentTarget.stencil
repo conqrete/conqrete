@@ -1,0 +1,16 @@
+//
+//  DeploymentTarget.swift
+//  {{ projectName }}
+//
+//  Created by {{ author }} on {{ date }}.
+//  Copyright © {{ year }} {{ organizationIdentifier }}. All rights reserved.
+//
+
+import ProjectDescription
+
+extension DeploymentTarget {
+
+    public static func minimumDeploymentTarget() -> DeploymentTarget {
+        return DeploymentTarget.iOS(targetVersion: "{{ deploymentTarget }}", devices: .iphone)
+    }
+}

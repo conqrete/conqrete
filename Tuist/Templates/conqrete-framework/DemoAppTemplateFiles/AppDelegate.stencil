@@ -1,0 +1,44 @@
+//
+//  AppDelegate.swift
+//  {{ projectName }}Demo
+//
+//  Created by {{ author }} on {{ date }}.
+//  Copyright © {{ year }} {{ organizationIdentifier }}. All rights reserved.
+//
+
+import UIKit
+import {{ projectName }}
+
+@main
+class AppDelegate: UIResponder, UIApplicationDelegate {
+
+    // MARK: - Internal Properties
+
+    var window: UIWindow?
+
+    // MARK: - Internal Methods
+
+    func application(
+        _ application: UIApplication,
+        didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
+    ) -> Bool {
+        setupRootWindow()
+
+        {{ projectName }}.helloWorld()
+
+        return true
+    }
+
+    // MARK: - Private Methods
+    
+    private func setupRootWindow() {
+        let viewController = ViewController()
+        let navigationController = UINavigationController(rootViewController: viewController)
+        navigationController.navigationItem.largeTitleDisplayMode = .always
+        navigationController.navigationBar.prefersLargeTitles = true
+
+        window = UIWindow()
+        window?.rootViewController = navigationController
+        window?.makeKeyAndVisible()
+    }
+}
