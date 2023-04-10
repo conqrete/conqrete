@@ -1,11 +1,3 @@
-//
-//  ProjectConstants.swift
-//  {{ projectName }}
-//
-//  Created by {{ author }} on {{ date }}.
-//  Copyright © {{ year }} {{ organizationIdentifier }}. All rights reserved.
-//
-
 import Foundation
 import ProjectDescription
 
@@ -16,16 +8,16 @@ public enum ProjectConstants {
         return versionString.trimmingCharacters(in: .whitespacesAndNewlines)
     }()
 
-    public static let organizationName: String = "{{ organizationIdentifier }}"
+    public static let organizationName: String = "{{ organization }}"
 
-    public static let projectName: String = "{{ projectName }}"
+    public static let name: String = "{{ name }}"
 
-    public static let demoAppTargetName: String = "\(projectName)Demo"
+    public static let demoAppTargetName: String = "\(name)Demo"
     public static let demoAppBundleID: String = "\(organizationName).\(demoAppTargetName)"
 
-    public static let frameworkTargetName: String = projectName
+    public static let frameworkTargetName: String = name
     public static let frameworkBundleID: String = "\(organizationName).\(frameworkTargetName)"
 
-    public static let frameworkTestsTargetName: String = "\(projectName)Tests"
+    public static let frameworkTestsTargetName: String = "\(name)Tests"
     public static let frameworkTestsBundleIdentifier: String = "\(frameworkBundleID)Tests"
 }

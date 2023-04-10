@@ -1,7 +1,7 @@
 # Conqrete Framework Tuist Template
 
 ![release](https://img.shields.io/github/v/release/conqrete/ConqreteFrameworkTuistTemplate?display_name=tag&sort=date)
-![template validation](https://img.shields.io/github/actions/workflow/status/conqrete/ConqreteFrameworkTuistTemplate/validate-template.yml?branch=main&label=template%20validation)
+![template validation](https://img.shields.io/github/actions/workflow/status/conqrete/ConqreteFrameworkTuistTemplate/validate-templates.yml?branch=main&label=template%20validation)
 ![license](https://img.shields.io/github/license/conqrete/ConqreteFrameworkTuistTemplate)
 ![powered by tuist](https://img.shields.io/badge/powered%20by-Tuist-blue)
 
@@ -134,7 +134,7 @@ This template supports following parameters
         <td><code>Conqrete</code></td>
     </tr>
     <tr>
-        <td><code>projectName</code></td>
+        <td><code>name</code></td>
         <td><code>--fmwk-name Analytics</code></td>
         <td><code>required</code></td>
         <td>
@@ -160,7 +160,7 @@ This template supports following parameters
         <td></td>
     </tr>
     <tr>
-        <td><code>organizationIdentifier</code></td>
+        <td><code>organization</code></td>
         <td><code>--organization-identifier com.conqrete</code></td>
         <td><code>optional</code></td>
         <td>

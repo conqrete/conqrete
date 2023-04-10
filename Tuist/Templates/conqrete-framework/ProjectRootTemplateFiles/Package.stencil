@@ -2,7 +2,7 @@
 
 import PackageDescription
 
-let frameworkName: String = "{{ projectName }}"
+let frameworkName: String = "{{ name }}"
 let frameworkTestsName: String = "\(frameworkName)Tests"
 
 let package = Package(

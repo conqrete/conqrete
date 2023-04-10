@@ -19,9 +19,9 @@ let dateString = defaultDateFormatter.string(from: now) ?? "15.08.2022"
 
 // MARK: - Attributes
 
-let projectNameAttribute: Template.Attribute = .required("projectName")
+let projectNameAttribute: Template.Attribute = .required("name")
 let authorAttribute: Template.Attribute = .required("author")
-let organizationIdentifierAttribute: Template.Attribute = .required("organizationIdentifier")
+let organizationIdentifierAttribute: Template.Attribute = .required("organization")
 
 let yearAttribute: Template.Attribute = .optional("year", default: yearString)
 let dateAttribute: Template.Attribute = .optional("date", default: dateString)
@@ -35,10 +35,10 @@ let marketingVersionAttribute: Template.Attribute = .optional("marketingVersion"
 
 // MARK: - Tuist Template Helpers
 
-let projectName: String = "\(projectNameAttribute)"
-let frameworkTargetName: String = projectName
-let frameworkTestsTargetName: String = "\(projectName)Tests"
-let demoAppTargetName: String = "\(projectName)Demo"
+let name: String = "\(projectNameAttribute)"
+let frameworkTargetName: String = name
+let frameworkTestsTargetName: String = "\(name)Tests"
+let demoAppTargetName: String = "\(name)Demo"
 
 
 enum ProjectFolder {
@@ -138,7 +138,7 @@ func projectFilePath(
     _ folder: ProjectFolder,
     _ path: String
 ) -> String {
-    return "./\(projectName)/\(folder.outputFolderPath)\(path)"
+    return "./\(name)/\(folder.outputFolderPath)\(path)"
 }
 
 extension Template.Item {
@@ -218,9 +218,9 @@ let template = Template(
         .file(.fastlane, file: "AppFile"),
         .file(.fastlane, file: "FastFile"),
         // Framework files
-        .file(.frameworkSources, file: "\(projectName).swift", template: "Framework"),
+        .file(.frameworkSources, file: "\(name).swift", template: "Framework"),
         .file(.frameworkSupportFiles, file: "Info.plist", template: "Info"),
-        .file(.frameworkTests, file: "\(projectName)Tests.swift", template: "FrameworkTests"),
+        .file(.frameworkTests, file: "\(name)Tests.swift", template: "FrameworkTests"),
         // GitHub Actions files
         .file(.githubActions, file: "build-and-test.yml", template: "BuildAndTestWorkflow"),
         // Project Root files

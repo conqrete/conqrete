@@ -1,13 +1,5 @@
-//
-//  AppDelegate.swift
-//  {{ projectName }}Demo
-//
-//  Created by {{ author }} on {{ date }}.
-//  Copyright © {{ year }} {{ organizationIdentifier }}. All rights reserved.
-//
-
 import UIKit
-import {{ projectName }}
+import {{ name }}
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -24,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     ) -> Bool {
         setupRootWindow()
 
-        {{ projectName }}.helloWorld()
+        {{ name }}.helloWorld()
 
         return true
     }

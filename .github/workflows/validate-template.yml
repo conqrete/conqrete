@@ -7,7 +7,7 @@ on:
       - 'main'
 
 jobs:
-  validate-template:
+  validate-templates:
     runs-on: macos-latest
     steps:
       - name: Checkout project
@@ -19,5 +19,5 @@ jobs:
           command: 'bundle'
 
       - name: Validate Template
-        run: chmod +x ./validate-template.sh \
-          ./validate-template.sh
+        run: chmod +x ./validate-templates.sh \
+          ./validate-templates.sh

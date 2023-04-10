@@ -1,17 +1,17 @@
-#  {{ projectName }}
+#  {{ name }}
 
-![release](https://img.shields.io/github/v/release/conqrete/{{ projectName }}?display_name=tag&sort=date)
-![build & test](https://img.shields.io/github/workflow/status/conqrete/{{ projectName }}/Build%20&%20Test?label=build%20%26%20test)
+![release](https://img.shields.io/github/v/release/conqrete/{{ name }}?display_name=tag&sort=date)
+![build & test](https://img.shields.io/github/workflow/status/conqrete/{{ name }}/Build%20&%20Test?label=build%20%26%20test)
 ![platforms](https://img.shields.io/badge/platforms-iOS-lightgrey.svg)
-![license](https://img.shields.io/github/license/conqrete/{{ projectName }})
+![license](https://img.shields.io/github/license/conqrete/{{ name }})
 
-{{ projectName }} description...
+{{ name }} description...
 
 ## Installation
 
 ### Tuist
 
-To install {{ projectName }} as a dependency for yout project via **Tuist**, you should first add this to dependencies list at `Dependencies.swift` like this:
+To install {{ name }} as a dependency for yout project via **Tuist**, you should first add this to dependencies list at `Dependencies.swift` like this:
 
 ```Swift
 // Dependencies.swift
@@ -23,7 +23,7 @@ let dependencies = Dependencies(
     swiftPackageManager: SwiftPackageManagerDependencies(
         [
             .remote(
-                url: "https://github.com/conqrete/{{ projectName }}",
+                url: "https://github.com/conqrete/{{ name }}",
                 requirement: .upToNextMajor(from: "{{ marketingVersion }}")
             )
             // ...
@@ -38,7 +38,7 @@ let dependencies = Dependencies(
 
 ### SPM
 
-Also, you could use pure **SPM** to install {{ projectName }}. Modify your `Package.swift` to add:
+Also, you could use pure **SPM** to install {{ name }}. Modify your `Package.swift` to add:
 
 ```Swift
 // Package.swift
@@ -46,7 +46,7 @@ Also, you could use pure **SPM** to install {{ projectName }}. Modify your `Pack
 let package = Package(
     // ...
     dependencies: [
-        .package(url: "https://github.com/conqrete/{{ projectName }}", .upToNextMajor(from: "{{ marketingVersion }}")),
+        .package(url: "https://github.com/conqrete/{{ name }}", .upToNextMajor(from: "{{ marketingVersion }}")),
         // ...
     ],
     // ...

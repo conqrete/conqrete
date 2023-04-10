@@ -27,7 +27,7 @@ echo "✅ Completed cleaning Tuist caches"
 # Clean Xcode caches
 echo "🔹 [3/3] Cleaninig Xcode workspace, project and caches"
 
-rm -rf -f ./Derived ./DerivedData ./{{ projectName }}.xcodeproj ./{{ projectName }}.xcworkspace
+rm -rf -f ./Derived ./DerivedData ./{{ name }}.xcodeproj ./{{ name }}.xcworkspace
 
 echo "✅ Completed cleaninig Xcode workspace, project and caches"
 

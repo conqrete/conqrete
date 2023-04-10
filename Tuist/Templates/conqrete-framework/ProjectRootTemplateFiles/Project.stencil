@@ -1,16 +1,8 @@
-//
-//  Project.swift
-//  {{ projectName }}
-//
-//  Created by {{ author }} on {{ date }}.
-//  Copyright © {{ year }} {{ organizationIdentifier }}. All rights reserved.
-//
-
 import ProjectDescription
 import ProjectDescriptionHelpers
 
 let project = Project(
-    name: ProjectConstants.projectName,
+    name: ProjectConstants.name,
     organizationName: ProjectConstants.organizationName,
     options: .options(
         automaticSchemesOptions: .disabled,
@@ -24,7 +16,7 @@ let project = Project(
             tabWidth: 4,
             wrapsLines: false
         ),
-        xcodeProjectName: ProjectConstants.projectName
+        xcodeProjectName: ProjectConstants.name
     ),
     settings: .projectSettings(),
     targets: [

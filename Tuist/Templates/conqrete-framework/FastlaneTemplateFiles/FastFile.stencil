@@ -5,8 +5,8 @@ platform :ios do
   desc "Build & Test"
   lane :test do
     run_tests(
-      workspace: "{{ projectName }}.xcworkspace",
-      scheme: "{{ projectName }}",
+      workspace: "{{ name }}.xcworkspace",
+      scheme: "{{ name }}",
       code_coverage: true
     )
   end

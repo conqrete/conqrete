@@ -1,11 +1,3 @@
-//
-//  Settings.swift
-//  {{ projectName }}
-//
-//  Created by {{ author }} on {{ date }}.
-//  Copyright © {{ year }} {{ organizationIdentifier }}. All rights reserved.
-//
-
 import ProjectDescription
 
 extension Settings {
