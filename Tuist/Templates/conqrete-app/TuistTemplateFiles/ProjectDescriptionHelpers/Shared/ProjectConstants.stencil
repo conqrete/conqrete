@@ -1,0 +1,13 @@
+import Foundation
+import ProjectDescription
+
+public enum ProjectConstants {
+
+    public static let currentProjectVersion: String = {
+        let versionString = Environment[dynamicMember: "projectVersion"].getString(default: "1")
+        return versionString.trimmingCharacters(in: .whitespacesAndNewlines)
+    }()
+
+    public static let organizationName: String = "{{ organization }}"
+    public static let projectName: String = "{{ name }}"
+}

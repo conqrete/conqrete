@@ -1,0 +1,49 @@
+import ProjectDescription
+
+extension Settings {
+
+    public static func projectSettings() -> Settings {
+        let baseSettings = SettingsDictionary()
+            .swiftVersion("{{ swiftVersion }}")
+            .appleGenericVersioningSystem()
+            .currentProjectVersion(ProjectConstants.currentProjectVersion)
+        let debugSettings = SettingsDictionary()
+            .activeCompilationConditions("DEBUG")
+            .gccPreprocessorDefinitions("DEBUG=1")
+        let releaseSettings = SettingsDictionary()
+            .swiftOptimizationLevel(.o)
+            .swiftCompilationMode(.wholemodule)
+            .activeCompilationConditions("RELEASE")
+            .gccPreprocessorDefinitions("RELEASE=1")
+        return .makeSettings(
+            base: baseSettings,
+            debug: debugSettings,
+            release: releaseSettings
+        )
+    }
+
+    static func anyFrameworkSettings(onlyAllowAppExtensionAPI: Bool) -> Settings {
+        let baseSettings = SettingsDictionary()
+            .currentProjectVersion(ProjectConstants.currentProjectVersion)
+            .currentLibraryVersion(ProjectConstants.currentProjectVersion)
+            .automaticCodeSigning(devTeam: "")
+            .onlyAllowAppExtensionAPI(onlyAllowAppExtensionAPI)
+        return .makeSettings(base: baseSettings)
+    }
+
+    static func makeSettings(
+        base baseSettings: SettingsDictionary = SettingsDictionary(),
+        debug debugSettings: SettingsDictionary = SettingsDictionary(),
+        release releaseSettings: SettingsDictionary = SettingsDictionary()
+    ) -> Settings {
+        let debugConfiguration = Configuration.debug(name: .debug, settings: debugSettings)
+        let releaseConfiguration = Configuration.release(name: .release, settings: releaseSettings)
+        return .settings(
+            base: baseSettings,
+            configurations: [
+                debugConfiguration,
+                releaseConfiguration
+            ]
+        )
+    }
+}

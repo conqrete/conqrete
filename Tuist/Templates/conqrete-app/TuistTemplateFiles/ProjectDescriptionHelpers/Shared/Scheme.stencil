@@ -1,0 +1,68 @@
+import ProjectDescription
+
+extension Scheme {
+
+    static func makeScheme(
+        schemeName: String,
+        buildActionTargetReference: TargetReference,
+        testActionTargetReferences: [TargetReference]
+    ) -> Scheme {
+        let buildAction: BuildAction = .buildAction(
+            targets: [buildActionTargetReference],
+            preActions: [],
+            postActions: [],
+            runPostActionsOnFailure: false
+        )
+        
+        var testAction: TestAction?
+        if !testActionTargetReference.isEmpty {
+            let testableTargets: [TestableTarget] = testActionTargetReferences.map {
+                TestableTarget(
+                    target: $0,
+                    parallelizable: true,
+                    randomExecutionOrdering: true
+                )
+            }
+
+            testAction = .targets(
+                testableTargets,
+                arguments: nil,
+                configuration: .debug,
+                attachDebugger: true,
+                expandVariableFromTarget: buildActionTargetReference,
+                preActions: [],
+                postActions: [],
+                options: .options(
+                    language: nil,
+                    region: nil,
+                    coverage: true,
+                    codeCoverageTargets: [buildActionTargetReference]
+                ),
+                diagnosticsOptions: [
+                    .mainThreadChecker
+                ]
+            )
+        }
+
+        let analyzeAction: AnalyzeAction = .analyzeAction(configuration: .debug)
+        let archiveAction: ArchiveAction = .archiveAction(
+            configuration: .release,
+            revealArchiveInOrganizer: true,
+            customArchiveName: nil,
+            preActions: [],
+            postActions: []
+        )
+
+        return Scheme(
+            name: schemeName,
+            shared: true,
+            hidden: false,
+            buildAction: buildAction,
+            testAction: testAction,
+            runAction: nil,
+            archiveAction: archiveAction,
+            profileAction: nil,
+            analyzeAction: analyzeAction
+        )
+    }
+}

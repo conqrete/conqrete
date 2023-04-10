@@ -1,0 +1,50 @@
+import Foundation
+import ProjectDescription
+
+extension ProjectConstants {
+
+    public static let uiTargetName: String = "\(projectName)UI"
+    public static let uiBundleID: String = "\(organizationName).\(uiTargetName)"
+}
+
+extension TargetReference {
+
+    static func uiTargetReference() -> TargetReference {
+        return TargetReference(projectPath: nil, target: ProjectConstants.uiTargetName)
+    }
+}
+
+extension TargetDependency {
+
+    static func uiTargetDependency() -> TargetDependency {
+        return  .target(name: ProjectConstants.uiTargetName)
+    }
+}
+
+extension Target {
+
+    public static func uiTarget() -> Target {
+        return makeTarget(
+            name: ProjectConstants.uiTargetName,
+            product: .framework,
+            bundleId: ProjectConstants.uiBundleID,
+            hasResources: true,
+            hasHeaders: false,
+            hasEntitlements: false,
+            scripts: [.tuistLint(targetName: ProjectConstants.uiTargetName)],
+            dependencies: [],
+            settings: .anyFrameworkSettings(onlyAllowAppExtensionAPI: false)
+        )
+    }
+}
+
+extension Scheme {
+
+    public static func uiScheme() -> Scheme {
+        return makeScheme(
+            schemeName: ProjectConstants.uiTargetName,
+            buildActionTargetReference: .uiTargetReference(),
+            testActionTargetReferences: []
+        )
+    }
+}

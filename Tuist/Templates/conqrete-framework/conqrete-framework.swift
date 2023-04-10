@@ -8,24 +8,15 @@ let yearDateFormatter: DateFormatter = {
     formatter.dateFormat = "YYYY"
     return formatter
 }()
-let defaultDateFormatter: DateFormatter = {
-    let formatter = DateFormatter()
-    formatter.dateFormat = "dd.MM.YYYY"
-    return formatter
-}()
 let now = Date()
-let yearString = yearDateFormatter.string(from: now) ?? "2022"
-let dateString = defaultDateFormatter.string(from: now) ?? "15.08.2022"
+let yearString = yearDateFormatter.string(from: now)
 
 // MARK: - Attributes
 
 let projectNameAttribute: Template.Attribute = .required("name")
-let authorAttribute: Template.Attribute = .required("author")
 let organizationIdentifierAttribute: Template.Attribute = .required("organization")
 
 let yearAttribute: Template.Attribute = .optional("year", default: yearString)
-let dateAttribute: Template.Attribute = .optional("date", default: dateString)
-
 let swiftVersionAttribute: Template.Attribute = .optional("swiftVersion", default: "5.8")
 let deploymentTargetAttribute: Template.Attribute = .optional("deploymentTarget", default: "15.0")
 let tuistVersionAttribute: Template.Attribute = .optional("tuistVersion", default: "3.17.0")
@@ -39,7 +30,6 @@ let name: String = "\(projectNameAttribute)"
 let frameworkTargetName: String = name
 let frameworkTestsTargetName: String = "\(name)Tests"
 let demoAppTargetName: String = "\(name)Demo"
-
 
 enum ProjectFolder {
 
@@ -195,10 +185,8 @@ let template = Template(
     description: "Conqrete framework template",
     attributes: [
         projectNameAttribute,
-        authorAttribute,
         organizationIdentifierAttribute,
         yearAttribute,
-        dateAttribute,
         swiftVersionAttribute,
         deploymentTargetAttribute,
         tuistVersionAttribute,

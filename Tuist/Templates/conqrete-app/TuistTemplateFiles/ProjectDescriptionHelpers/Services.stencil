@@ -1,0 +1,67 @@
+import Foundation
+import ProjectDescription
+
+extension ProjectConstants {
+
+    public static let servicesTargetName: String = "\(projectName)Services"
+    public static let servicesBundleID: String = "\(organizationName).\(servicesTargetName)"
+
+    public static let servicesTestsTargetName: String = "\(servicesTargetName)Tests"
+    public static let servicesTestsBundleID: String = "\(organizationName).\(servicesTestsTargetName)"
+}
+
+extension TargetReference {
+
+    static func servicesTargetReference() -> TargetReference {
+        return TargetReference(projectPath: nil, target: ProjectConstants.servicesTargetName)
+    }
+
+    static func servicesTestsTargetReference() -> TargetReference {
+        return TargetReference(projectPath: nil, target: ProjectConstants.servicesTestsTargetName)
+    }
+}
+
+extension TargetDependency {
+    
+    static func servicesTargetDependency() -> TargetDependency {
+        return  .target(name: ProjectConstants.servicesTargetName)
+    }
+}
+
+extension Target {
+
+    public static func servicesTarget() -> Target {
+        return makeTarget(
+            name: ProjectConstants.servicesTargetName,
+            product: .framework,
+            bundleId: ProjectConstants.servicesBundleID,
+            hasResources: false,
+            hasHeaders: false,
+            hasEntitlements: false,
+            scripts: [.tuistLint(targetName: ProjectConstants.servicesTargetName)],
+            dependencies: [.coreTargetDependency()],
+            settings: .anyFrameworkSettings(onlyAllowAppExtensionAPI: false)
+        )
+    }
+
+    public static func servicesTestsTarget() -> Target {
+        return makeUnitTestsTarget(
+            testTargetName: ProjectConstants.servicesTestsTargetName,
+            bundleId: ProjectConstants.servicesTestsBundleID,
+            scripts: [.tuistLint(targetName: ProjectConstants.servicesTestsTargetName)],
+            dependencies: [.servicesTargetDependency()],
+            settings: .anyFrameworkSettings(onlyAllowAppExtensionAPI: false)
+        )
+    }
+}
+
+extension Scheme {
+
+    public static func servicesScheme() -> Scheme {
+        return makeScheme(
+            schemeName: ProjectConstants.servicesTargetName,
+            buildActionTargetReference: .servicesTargetReference(),
+            testActionTargetReferences: [.servicesTestsTargetReference()]
+        )
+    }
+}

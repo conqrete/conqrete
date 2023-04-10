@@ -1,4 +1,0 @@
-import Foundation
-import {{ name }}Core
-
-public final class SomeService {}

@@ -1,0 +1,11 @@
+import ProjectDescription
+
+extension ProjectConstants {
+}
+
+extension DeploymentTarget {
+
+    public static func minimumDeploymentTarget() -> DeploymentTarget {
+        return DeploymentTarget.iOS(targetVersion: "{{ deploymentTarget }}", devices: .iphone)
+    }
+}

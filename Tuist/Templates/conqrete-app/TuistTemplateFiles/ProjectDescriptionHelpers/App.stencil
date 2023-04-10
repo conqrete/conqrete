@@ -1,0 +1,88 @@
+import Foundation
+import ProjectDescription
+
+extension ProjectConstants {
+
+    public static let appTargetName: String = projectName
+    public static let appBundleID: String = "\(organizationName).\(appTargetName)"
+
+    public static let appTestsTargetName: String = "\(appTargetName)Tests"
+    public static let appTestsBundleID: String = "\(organizationName).\(appTestsTargetName)"
+}
+
+extension Settings {
+
+    static func appSettings() -> Settings {
+        let baseSettings = SettingsDictionary()
+            .currentProjectVersion(ProjectConstants.currentProjectVersion)
+            .automaticCodeSigning(devTeam: "")
+        return .makeSettings(base: baseSettings)
+    }
+}
+
+extension TargetReference {
+
+    static func appTargetReference() -> TargetReference {
+        return TargetReference(projectPath: nil, target: ProjectConstants.appTargetName)
+    }
+
+    static func appTestsTargetReference() -> TargetReference {
+        return TargetReference(projectPath: nil, target: ProjectConstants.appTestsTargetName)
+    }
+}
+
+extension TargetDependency {
+
+    static func appTargetDependency() -> TargetDependency {
+        return .target(name: ProjectConstants.appTargetName)
+    }
+}
+
+extension Target {
+
+    public static func appTarget() -> Target {
+        return makeTarget(
+            name: ProjectConstants.appTargetName,
+            product: .app,
+            bundleId: ProjectConstants.appBundleID,
+            hasResources: true,
+            hasHeaders: false,
+            hasEntitlements: false,
+            scripts: [.tuistLint(targetName: ProjectConstants.appTargetName)],
+            dependencies: [
+                .flowsTargetDependency(),
+                .servicesTargetDependency(),
+                .navigationTargetDependency(),
+                .uiTargetDependency(),
+                .coreTargetDependency(),
+            ],
+            settings: .appSettings()
+        )
+    }
+
+    public static func appTestsTarget() -> Target {
+        return makeUnitTestsTarget(
+            testTargetName: ProjectConstants.appTestsTargetName,
+            bundleId: ProjectConstants.appTestsBundleID,
+            scripts: [.tuistLint(targetName: ProjectConstants.appTestsTargetName)],
+            dependencies: [.appTargetDependency()],
+            settings: .anyFrameworkSettings(onlyAllowAppExtensionAPI: false)
+        )
+    }
+}
+
+extension Scheme {
+
+    public static func appScheme() -> Scheme {
+        return makeScheme(
+            schemeName: ProjectConstants.appTargetName,
+            buildActionTargetReference: .appTargetReference(),
+            testActionTargetReferences: [
+                .appTestsTargetReference(),
+                .flowsTestsTargetReference(),
+                .servicesTestsTargetReference(),
+                .coreTestsTargetReference(),
+            ]
+        )
+    }
+}

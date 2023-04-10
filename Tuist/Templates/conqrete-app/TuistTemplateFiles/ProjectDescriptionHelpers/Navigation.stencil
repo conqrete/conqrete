@@ -1,0 +1,50 @@
+import Foundation
+import ProjectDescription
+
+extension ProjectConstants {
+
+    public static let navigationTargetName: String = "\(projectName)Navigation"
+    public static let navigationBundleID: String = "\(organizationName).\(navigationTargetName)"
+}
+
+extension TargetReference {
+
+    static func navigationTargetReference() -> TargetReference {
+        return TargetReference(projectPath: nil, target: ProjectConstants.navigationTargetName)
+    }
+}
+
+extension TargetDependency {
+    
+    static func navigationTargetDependency() -> TargetDependency {
+        return  .target(name: ProjectConstants.navigationTargetName)
+    }
+}
+
+extension Target {
+
+    public static func navigationTarget() -> Target {
+        return makeTarget(
+            name: ProjectConstants.navigationTargetName,
+            product: .framework,
+            bundleId: ProjectConstants.navigationBundleID,
+            hasResources: false,
+            hasHeaders: false,
+            hasEntitlements: false,
+            scripts: [.tuistLint(targetName: ProjectConstants.navigationTargetName)],
+            dependencies: [.coreTargetDependency()],
+            settings: .anyFrameworkSettings(onlyAllowAppExtensionAPI: false)
+        )
+    }
+}
+
+extension Scheme {
+
+    public static func navigationScheme() -> Scheme {
+        return makeScheme(
+            schemeName: ProjectConstants.navigationTargetName,
+            buildActionTargetReference: .navigationTargetReference(),
+            testActionTargetReferences: []
+        )
+    }
+}

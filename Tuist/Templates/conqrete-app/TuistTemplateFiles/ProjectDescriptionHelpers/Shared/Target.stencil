@@ -2,57 +2,7 @@ import ProjectDescription
 
 extension Target {
 
-    // MARK: - Public Type Methods
-
-    public static func demoAppTarget() -> Target {
-        return makeTarget(
-            name: ProjectConstants.demoAppTargetName,
-            product: .app,
-            bundleId: ProjectConstants.demoAppBundleID,
-            hasResources: true,
-            hasHeaders: false,
-            hasEntitlements: false,
-            scripts: [
-                .tuistLint(targetName: ProjectConstants.demoAppTargetName)
-            ],
-            dependencies: .demoAppDependencies(),
-            settings: .demoAppSettings()
-        )
-    }
-
-    public static func frameworkTarget() -> Target {
-        return makeTarget(
-            name: ProjectConstants.frameworkTargetName,
-            product: .framework,
-            bundleId: ProjectConstants.frameworkBundleID,
-            hasResources: false,
-            hasHeaders: false,
-            hasEntitlements: false,
-            scripts: [
-                .tuistLint(targetName: ProjectConstants.frameworkTargetName)
-            ],
-            dependencies: .frameworkDependencies(),
-            settings: .anyFrameworkSettings(onlyAllowAppExtensionAPI: false)
-        )
-    }
-
-    public static func frameworkTestsTarget() -> Target {
-        return makeUnitTestsTarget(
-            testTargetName: ProjectConstants.frameworkTestsTargetName,
-            bundleId: ProjectConstants.frameworkTestsBundleIdentifier,
-            scripts: [
-                .tuistLint(targetName: ProjectConstants.frameworkTestsTargetName)
-            ],
-            dependencies: [
-                .target(name: ProjectConstants.frameworkTargetName)
-            ],
-            settings: .anyFrameworkSettings(onlyAllowAppExtensionAPI: false)
-        )
-    }
-
-    // MARK: - Private Type Methods
-
-    private static func makeTarget(
+    static func makeTarget(
         name: String,
         product: Product,
         bundleId: String,
@@ -100,7 +50,7 @@ extension Target {
         )
     }
 
-    private static func makeUnitTestsTarget(
+    static func makeUnitTestsTarget(
         testTargetName: String,
         bundleId: String,
         scripts: [TargetScript],

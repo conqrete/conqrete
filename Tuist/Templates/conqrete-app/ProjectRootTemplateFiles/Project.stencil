@@ -2,7 +2,7 @@ import ProjectDescription
 import ProjectDescriptionHelpers
 
 let project = Project(
-    name: ProjectConstants.name,
+    name: ProjectConstants.projectName,
     organizationName: ProjectConstants.organizationName,
     options: .options(
         automaticSchemesOptions: .disabled,
@@ -16,16 +16,20 @@ let project = Project(
             tabWidth: 4,
             wrapsLines: false
         ),
-        xcodeProjectName: ProjectConstants.name
+        xcodeProjectName: ProjectConstants.projectName
     ),
     settings: .projectSettings(),
     targets: [
         .appTarget(),
+        .appTestsTarget(),
         .flowsTarget(),
+        .flowsTestsTarget(),
         .servicesTarget(),
+        .servicesTestsTarget(),
         .navigationTarget(),
         .uiTarget(),
         .coreTarget(),
+        .coreTestsTarget()
     ],
     schemes: [
         .appScheme(),

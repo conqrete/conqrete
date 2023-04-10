@@ -1,0 +1,67 @@
+import Foundation
+import ProjectDescription
+
+extension ProjectConstants {
+
+    public static let coreTargetName: String = "\(projectName)Core"
+    public static let coreBundleID: String = "\(organizationName).\(coreTargetName)"
+
+    public static let coreTestsTargetName: String = "\(coreTargetName)Tests"
+    public static let coreTestsBundleID: String = "\(organizationName).\(coreTestsTargetName)"
+}
+
+extension TargetReference {
+
+    static func coreTargetReference() -> TargetReference {
+        return TargetReference(projectPath: nil, target: ProjectConstants.coreTargetName)
+    }
+
+    static func coreTestsTargetReference() -> TargetReference {
+        return TargetReference(projectPath: nil, target: ProjectConstants.coreTestsTargetName)
+    }
+}
+
+extension TargetDependency {
+    
+    static func coreTargetDependency() -> TargetDependency {
+        return  .target(name: ProjectConstants.coreTargetName)
+    }
+}
+
+extension Target {
+
+    public static func coreTarget() -> Target {
+        return makeTarget(
+            name: ProjectConstants.coreTargetName,
+            product: .framework,
+            bundleId: ProjectConstants.coreBundleID,
+            hasResources: false,
+            hasHeaders: false,
+            hasEntitlements: false,
+            scripts: [.tuistLint(targetName: ProjectConstants.coreTargetName)],
+            dependencies: [],
+            settings: .anyFrameworkSettings(onlyAllowAppExtensionAPI: true)
+        )
+    }
+
+    public static func coreTestsTarget() -> Target {
+        return makeUnitTestsTarget(
+            testTargetName: ProjectConstants.coreTestsTargetName,
+            bundleId: ProjectConstants.coreTestsBundleID,
+            scripts: [.tuistLint(targetName: ProjectConstants.coreTestsTargetName)],
+            dependencies: [.coreTargetDependency()],
+            settings: .anyFrameworkSettings(onlyAllowAppExtensionAPI: true)
+        )
+    }
+}
+
+extension Scheme {
+
+    public static func coreScheme() -> Scheme {
+        return makeScheme(
+            schemeName: ProjectConstants.coreTargetName,
+            buildActionTargetReference: .coreTargetReference(),
+            testActionTargetReferences: [.coreTestsTargetReference()]
+        )
+    }
+}

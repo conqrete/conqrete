@@ -1,0 +1,71 @@
+import Foundation
+import ProjectDescription
+
+extension ProjectConstants {
+
+    public static let flowsTargetName: String = "\(projectName)Flows"
+    public static let flowsBundleID: String = "\(organizationName).\(flowsTargetName)"
+
+    public static let flowsTestsTargetName: String = "\(flowsTargetName)Tests"
+    public static let flowsTestsBundleID: String = "\(organizationName).\(flowsTestsTargetName)"
+}
+
+extension TargetReference {
+
+    static func flowsTargetReference() -> TargetReference {
+        return TargetReference(projectPath: nil, target: ProjectConstants.flowsTargetName)
+    }
+
+    static func flowsTestsTargetReference() -> TargetReference {
+        return TargetReference(projectPath: nil, target: ProjectConstants.flowsTestsTargetName)
+    }
+}
+
+extension TargetDependency {
+    
+    static func flowsTargetDependency() -> TargetDependency {
+        return  .target(name: ProjectConstants.flowsTargetName)
+    }
+}
+
+extension Target {
+
+    public static func flowsTarget() -> Target {
+        return makeTarget(
+            name: ProjectConstants.flowsTargetName,
+            product: .framework,
+            bundleId: ProjectConstants.flowsBundleID,
+            hasResources: false,
+            hasHeaders: false,
+            hasEntitlements: false,
+            scripts: [.tuistLint(targetName: ProjectConstants.flowsTargetName)],
+            dependencies: [
+                .navigationTargetDependency(),
+                .uiTargetDependency(),
+                .coreTargetDependency()
+            ],
+            settings: .anyFrameworkSettings(onlyAllowAppExtensionAPI: false)
+        )
+    }
+
+    public static func flowsTestsTarget() -> Target {
+        return makeUnitTestsTarget(
+            testTargetName: ProjectConstants.flowsTestsTargetName,
+            bundleId: ProjectConstants.flowsTestsBundleID,
+            scripts: [.tuistLint(targetName: ProjectConstants.flowsTestsTargetName)],
+            dependencies: [.flowsTargetDependency()],
+            settings: .anyFrameworkSettings(onlyAllowAppExtensionAPI: false)
+        )
+    }
+}
+
+extension Scheme {
+
+    public static func flowsScheme() -> Scheme {
+        return makeScheme(
+            schemeName: ProjectConstants.flowsTargetName,
+            buildActionTargetReference: .flowsTargetReference(),
+            testActionTargetReferences: [.flowsTestsTargetReference()]
+        )
+    }
+}

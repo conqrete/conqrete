@@ -1,0 +1,12 @@
+import ProjectDescription
+
+let config = Config(
+    swiftVersion: "{{ swiftVersion }}",
+    plugins: [
+        .git(url: "https://github.com/tuist/tuist-plugin-lint", tag: "0.3.0")
+    ],
+    generationOptions: .options(
+        resolveDependenciesWithSystemScm: false,
+        disablePackageVersionLocking: false
+    )
+)
