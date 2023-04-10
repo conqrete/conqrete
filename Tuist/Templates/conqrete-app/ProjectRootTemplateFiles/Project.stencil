@@ -1,0 +1,44 @@
+import ProjectDescription
+import ProjectDescriptionHelpers
+
+let project = Project(
+    name: ProjectConstants.name,
+    organizationName: ProjectConstants.organizationName,
+    options: .options(
+        automaticSchemesOptions: .disabled,
+        developmentRegion: "en",
+        disableBundleAccessors: false,
+        disableShowEnvironmentVarsInScriptPhases: false,
+        disableSynthesizedResourceAccessors: false,
+        textSettings: .textSettings(
+            usesTabs: false,
+            indentWidth: 4,
+            tabWidth: 4,
+            wrapsLines: false
+        ),
+        xcodeProjectName: ProjectConstants.name
+    ),
+    settings: .projectSettings(),
+    targets: [
+        .appTarget(),
+        .flowsTarget(),
+        .servicesTarget(),
+        .navigationTarget(),
+        .uiTarget(),
+        .coreTarget(),
+    ],
+    schemes: [
+        .appScheme(),
+        .flowsScheme(),
+        .servicesScheme(),
+        .navigationScheme(),
+        .uiScheme(),
+        .coreScheme(),
+    ],
+    additionalFiles: [],
+    resourceSynthesizers: [
+        .assets(),
+        .strings(),
+        .fonts()
+    ]
+)

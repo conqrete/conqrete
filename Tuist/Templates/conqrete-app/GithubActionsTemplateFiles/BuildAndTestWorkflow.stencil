@@ -1,0 +1,34 @@
+name: Build & Test
+
+on:
+  pull_request:
+  push:
+    branches:
+      - 'main'
+
+jobs:
+  test:
+    runs-on: macos-latest
+    name: Build & Test
+    steps:
+      - name: Checkout project
+        uses: actions/checkout@v3
+
+      - name: Setup ruby & install fastlane
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+
+      - name: Tuist fetch
+        uses: tuist/tuist-action@0.13.0
+        with:
+          command: 'fetch'
+
+      - name: Tuist generate
+        uses: tuist/tuist-action@0.13.0
+        with:
+          command: 'generate'
+
+      - name: Build & Test
+        run: bundle exec fastlane ios test
+

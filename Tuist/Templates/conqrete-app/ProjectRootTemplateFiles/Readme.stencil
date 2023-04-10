@@ -1,0 +1,47 @@
+#  {{ name }}
+
+{{ name }} project description to be added here
+
+## Layers hierarchy scheme
+
+```
+*-----------------------------------------------------*
+|                         App                         |
+*--^---------^---------------------------^------------*
+   ^         ^                           ^
+   ^  *------^-------*  *----------------^------------*
+   ^  |   Services   |  |            Flows            |
+   ^  *------^-------*  *--^----------^------------^--*
+   ^         ^             ^          ^            ^
+   ^         ^             ^  *-------^------*     ^
+   ^         ^             ^  |  Navigation  |     ^
+   ^         ^             ^  *--^-----------*     ^
+   ^         ^             ^     ^                 ^
+*--^---------^-------------^-----^--*          *---^--*
+|               Core                |          |  UI  |
+*-----------------------------------*          *------*
+```
+
+### Core
+
+Enitities, service interfaces and utilities.
+
+### UI
+
+Building blocks for UI (design system), UIKit extensions and utilities.
+
+### Navigation
+
+Navigation layer implementation like routes and base coordinators.
+
+### Services
+
+Services implementations layer. You may start with single module for whole layer but later split into multiple modules on per-service basis.
+
+### Flows
+
+App flows layer, where "flow" is user flow within app. You may start with single module for whole layer but later split into multiple modules on per-flow basis.
+
+### App
+
+This layer glues all flows together, sets up DI and registers service implementations ("Services" layer) to be resolved for interfaces ("Core" layer).

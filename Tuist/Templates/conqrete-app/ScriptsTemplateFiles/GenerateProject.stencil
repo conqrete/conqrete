@@ -1,0 +1,45 @@
+#!/bin/bash
+
+# Info
+echo "🔹 Running generate-project.sh"
+
+# Searching Tuist
+echo ""
+echo "🔹 [1/4] Searching for Tuist"
+
+export TUIST=$(which tuist)
+if ! command -v $TUIST &> /dev/null; then
+    echo "❌ Tuist not found"
+    exit 1
+else
+    echo "✅ Found Tuist at $TUIST"
+fi
+
+# 2 Fetch Dependencies
+echo ""
+echo "🔹 [2/4] Fetching dependencies"
+
+export PROJECT_DIR=.
+$TUIST fetch -p $PROJECT_DIR
+
+echo "✅ Fetching dependencies completed"
+
+# Get Project Version
+echo ""
+echo "🔹 [3/4] Getting current project version..."
+
+export CURRENT_PROJECT_VERSION=$(cat ./.current-project-version)
+
+echo "✅ Current project version is $CURRENT_PROJECT_VERSION"
+
+# Generate Project
+echo ""
+echo "🔹 [4/4] Generating Xcode project and workspace..."
+
+export TUIST_PROJECT_VERSION=$CURRENT_PROJECT_VERSION && $TUIST generate -p $PROJECT_DIR --no-open
+
+echo "✅ Generating Xcode project and workspace completed"
+
+# Completed
+echo ""
+echo "✅ generate-project.sh completed"

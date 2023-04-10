@@ -1,0 +1,4 @@
+import Foundation
+import {{ name }}Core
+
+public enum SomeFlowRoute {}
