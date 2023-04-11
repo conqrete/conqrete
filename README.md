@@ -1,11 +1,11 @@
-# Conqrete Framework Tuist Template
+[![release](https://img.shields.io/github/v/release/conqrete/ConqreteFrameworkTuistTemplate?display_name=tag&sort=date)](https://github.com/conqrete/conqrete/releases)
+[![template validation](https://img.shields.io/github/actions/workflow/status/conqrete/conqrete/validate-templates.yml?branch=main&label=template%20validation)](https://github.com/conqrete/conqrete/actions/workflows/validate-template.yml)
+[![license](https://img.shields.io/github/license/conqrete/conqrete)](https://github.com/conqrete/conqrete/blob/main/LICENSE)
+[![powered by tuist](https://img.shields.io/badge/powered%20by-Tuist-blue)](https://tuist.io)
 
-![release](https://img.shields.io/github/v/release/conqrete/ConqreteFrameworkTuistTemplate?display_name=tag&sort=date)
-![template validation](https://img.shields.io/github/actions/workflow/status/conqrete/ConqreteFrameworkTuistTemplate/validate-templates.yml?branch=main&label=template%20validation)
-![license](https://img.shields.io/github/license/conqrete/ConqreteFrameworkTuistTemplate)
-![powered by tuist](https://img.shields.io/badge/powered%20by-Tuist-blue)
+![conqrete logotype](./Resources/conqrete-logotype.png)
 
-Conqrete's Tuist template for generating Conqrete framework project
+Conqrete is a set of [Tuist](https://tuist.io) templates for bootstrapping iOS app or framework projects
 
 # Installation
 
@@ -57,11 +57,12 @@ tuist scaffold list
   The output should look line this:
 
   ```
-  Name      Description
-  ────────  ───────────────────────────
-  default   Default template
-  swiftui   SwiftUI template
-  conqrete  Conqrete framework template
+  Name                Description
+  ──────────────────  ───────────────────────────
+  default             Default template
+  swiftui             SwiftUI template
+  conqrete-app        Conqrete app template
+  conqrete-framework  Conqrete framework template
   ```
 
   The last line means that `tuist` has successfully detected `conqrete` template and is ready to use via `scaffold` or `init -t` commands
@@ -76,15 +77,26 @@ tuist scaffold list
 
 # Usage
 
-To bootstrap new Conqrete framework, execute following script (in ex., `ConqreteAnalytics` will be created):
+After installing conqrete, 2 new templates must be available for using with `tuist scaffold`:
+- `conqrete-app` - the template to use for bootstraping iOS app
+- `conqrete-framework` - the template to use for bootstraping iOS framework
+
+## App template
+
+TBD
+
+## Framework template
+
+To bootstrap new Conqrete framework, execute following script (in ex., `MyFramework` will be created):
 
 ```sh
-tuist scaffold conqrete --fmwk-name Analytics --author $(git config user.name)
+tuist scaffold conqrete-framework --name MyFramework --organization com.myOrganization
 ```
 
 > Note that template has 2 required parameters:
-> - `--fmwk-name` - the name of the framewok. By default, it is appended to prefix `Conqrete`
-> - `author` - the author's username. Use `--author $(git config user.name)` to use current git's username for `--author` parameter
+> - `name` - the name of the framewok. By default, it is appended to prefix `Conqrete`
+> - `organization` - the organization in reversed domain style like `com.orgnaizationDomain`
+
 >
 > You could examine full list of parameters below at the section **Parameters list**
 
@@ -104,13 +116,13 @@ open ./ConqreteAnalytics.xcworkspace
 
 ## Usage notes
 
-- You must use `tuist scaffold conqrete ...` and not `tuist init -t conqrete` as `init` command currently has a few limitations:
+- You must use `tuist scaffold conqrete-...` and not `tuist init -t conqrete-...` as `init` command currently has a few limitations:
   - it does not accept parameters
   - it could only be used within empty directory
 
 ## Parameters list
 
-This template supports following parameters
+Both templates supports following list of parameters:
 
 <table>
     <tr>
@@ -121,21 +133,8 @@ This template supports following parameters
         <th>Default value</th>
     </tr>
     <tr>
-        <td><code>prefix</code></td>
-        <td><code>--prefix Conqrete</code></td>
-        <td><code>optional</code></td>
-        <td>
-            <p>Prefix used for creating framework</p>
-            <p>
-                Do not change this if you are creating framework
-                for <code>Conqrete</code> family
-            </p>
-        </td>
-        <td><code>Conqrete</code></td>
-    </tr>
-    <tr>
         <td><code>name</code></td>
-        <td><code>--fmwk-name Analytics</code></td>
+        <td><code>--name CoolApp</code></td>
         <td><code>required</code></td>
         <td>
             <p>Framework name</p>
@@ -147,30 +146,18 @@ This template supports following parameters
         <td></td>
     </tr>
     <tr>
-        <td><code>author</code></td>
-        <td><code>--author stilltimm</code></td>
-        <td><code>required</code></td>
+        <td><code>organization</code></td>
+        <td><code>--organization com.myOrganization</code></td>
+        <td><code>optional</code></td>
         <td>
-            <p>Author's git username</p>
             <p>
-                Use <code>--author $(git config user.name)</code>
-                to use current git username
+                Organization identifier in reversed domain notation
+            </p>
+            <p>
+                All bundle identifiers will be prefixed using this value
             </p>
         </td>
         <td></td>
-    </tr>
-    <tr>
-        <td><code>organization</code></td>
-        <td><code>--organization-identifier com.conqrete</code></td>
-        <td><code>optional</code></td>
-        <td>
-            <p>Organization identifier</p>
-            <p>
-                Do not change this if you are creating framework
-                for <code>Conqrete</code> family
-            </p>
-        </td>
-        <td><code>com.conqrete</code></td>
     </tr>
     <tr>
         <td><code>year</code></td>
@@ -178,10 +165,7 @@ This template supports following parameters
         <td><code>optional</code></td>
         <td>
             <p>Current year string in <code>YYYY</code> ISO format</p>
-            <p>
-                Do not change this as current year
-                is filled by default
-            </p>
+            <p>Current year is filled by default</p>
             <p>
                 Default value uses simple <code>DateFormatter</code> to make string from current date
             </p>
@@ -191,41 +175,23 @@ This template supports following parameters
         </td>
     </tr>
     <tr>
-        <td><code>date</code></td>
-        <td><code>--date 15.08.2022</code></td>
-        <td><code>optional</code></td>
-        <td>
-            <p>Current year string in <code>YYYY</code> ISO format</p>
-            <p>
-                Do not change this as current year
-                is filled by default
-            </p>
-            <p>
-                Default value uses simple <code>DateFormatter</code> to make string from current date
-            </p>
-        </td>
-        <td>
-            <code>defaultDateFormatter.string(from: Date())</code>
-        </td>
-    </tr>
-    <tr>
         <td><code>swiftVersion</code></td>
-        <td><code>--swift-version 5.5</code></td>
+        <td><code>--swift-version 5.8</code></td>
         <td><code>optional</code></td>
         <td>
             <p>Swift version to use in generated project</p>
         </td>
-        <td><code>5.5</code></td>
+        <td><code>5.8</code></td>
     </tr>
     <tr>
         <td><code>tuistVersion</code></td>
-        <td><code>--tuist-version 3.9.0</code></td>
+        <td><code>--tuist-version 3.17.0</code></td>
         <td><code>optional</code></td>
         <td>
             <p>Tuist version to use in generated project</p>
             <p>Goes to <code>.tuist-version</code> file</p>
         </td>
-        <td><code>3.9.0</code></td>
+        <td><code>3.17.0</code></td>
     </tr>
     <tr>
         <td><code>rubyVersion</code></td>
