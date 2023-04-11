@@ -3,7 +3,7 @@
 [![license](https://img.shields.io/github/license/conqrete/conqrete)](https://github.com/conqrete/conqrete/blob/main/LICENSE)
 [![powered by tuist](https://img.shields.io/badge/powered%20by-Tuist-blue)](https://tuist.io)
 
-![conqrete logotype](./Resources/conqrete-logotype.png)
+![conqrete logotype](./Resources/conqrete-logo.png)
 
 Conqrete is a set of [Tuist](https://tuist.io) templates for bootstrapping iOS app or framework projects
 
