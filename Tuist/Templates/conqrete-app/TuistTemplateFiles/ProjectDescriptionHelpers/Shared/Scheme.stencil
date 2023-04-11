@@ -15,7 +15,7 @@ extension Scheme {
         )
         
         var testAction: TestAction?
-        if !testActionTargetReference.isEmpty {
+        if !testActionTargetReferences.isEmpty {
             let testableTargets: [TestableTarget] = testActionTargetReferences.map {
                 TestableTarget(
                     target: $0,
